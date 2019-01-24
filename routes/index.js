@@ -1,0 +1,55 @@
+var express = require('express');
+var router = express.Router();
+var formidable = require('formidable');
+var fs = require('fs');
+var path = require('path');
+var util = require('util');
+const execSync = require('child_process').execSync;
+var code = execSync('node -v');
+// var Converter = require("csvtojson").Converter;
+// var converter = new Converter({});
+const csv=require('csvtojson')
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('./gen_vis/main');
+});
+
+router.post('/', function(req, res, next){
+  //Logic for reading csv goes here
+  var form = new formidable.IncomingForm();
+  form.parse(req, function(err, fields, files){
+    let fileLength = Object.keys(files).length
+    // csv file as well as a callback function
+    for(var fileIndex = 0; fileIndex < fileLength; fileIndex++){
+      fileIndex = fileIndex.toString();
+      let fileName = path.parse(files['csvfile'+fileIndex].name).name; 
+      if(fileName != ""){
+        csv().fromFile(files['csvfile'+fileIndex].path).then(function(result, err){
+          // if an error has occured then handle it
+          if(err){
+              console.log("An Error Has Occured");
+              console.log(err);  
+          } 
+          fs.writeFileSync('./public/data/'+fileName+'.js', '', function(){console.log('done')})
+          fs.appendFileSync('./public/data/'+fileName+'.js', 'var '+ fileName +'= [', function (err) {
+            if (err) throw err;
+            console.log('Saved!');
+          });
+          for(var index = 0; index < result.length-1; index++){
+            fs.appendFileSync('./public/data/'+fileName+'.js', util.inspect(result[index])+',\n', function (err) {
+              if (err) throw err;
+              console.log('Saved!');
+            });
+          }
+          fs.appendFileSync('./public/data/'+fileName+'.js', util.inspect(result[result.length-1])+']', function (err) {
+            if (err) throw err;
+            console.log('Saved!');
+          });
+        });
+      }
+    }
+    res.render('gen_vis/main', {title: files});  
+  })
+})
+
+module.exports = router;
