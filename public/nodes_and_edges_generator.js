@@ -1,6 +1,14 @@
 var nodes = [];var edges = [];
 var nodetype_count = 0;var count_nodes = 0;
 
+function search_arrayobjects(nameKey, myArray,k){
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i][k] === nameKey) { 
+           return i;
+        }
+    }
+}
+
 for(iteration=0;iteration<array_for_nodes.length;iteration++)
 {
 var nodearray = [];
