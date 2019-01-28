@@ -16,14 +16,14 @@ document.getElementById('add').addEventListener('click', function(e){
     newInputFileElement.setAttribute("id", "csvFile");
 
     //Creating radio buttons 
-    let newInputRadioElement = document.createElement("INPUT");
-    newInputRadioElement.setAttribute("type", "checkbox");
-    newInputRadioElement.setAttribute("name", "leafnode"+inputFileElements.length); // making value unique
-    newInputRadioElement.setAttribute("id", "leafnode"+inputFileElements.length);
+    // let newInputRadioElement = document.createElement("INPUT");
+    // newInputRadioElement.setAttribute("type", "checkbox");
+    // newInputRadioElement.setAttribute("name", "leafnode"+inputFileElements.length); // making value unique
+    // newInputRadioElement.setAttribute("id", "leafnode"+inputFileElements.length);
     document.getElementById('import-div').style.height = 250+inputFileElements.length*30+"px";
     //appending the element
     this.parentElement.append(newInputFileElement);
-    this.parentElement.append(" ");
-    this.parentElement.append(newInputRadioElement);
+    // this.parentElement.append(" ");
+    // this.parentElement.append(newInputRadioElement);
     this.parentElement.append(brTag);
 })

@@ -29,7 +29,10 @@ for(i=0;i<number_of_colors;i++)
 */
 
 /*--------------------------------------------------------------------------------------------------------------------------------*/
-
+// var leafnodetype;
+// for(i=0;i<array_for_nodes.length;i++){
+// 	if(array_for_nodes[i]===arrayofleafnodes){leafnodetype=i;}
+// }
 
 
 var nodes = [],
