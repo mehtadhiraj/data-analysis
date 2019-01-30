@@ -1,6 +1,6 @@
 var settings_config = {
 						minNodeSize:3,
-			 	 		maxNodeSize:3,
+			 	 		maxNodeSize:20,
 						minEdgeSize:0.1,
 						maxEdgeSize:0.6,
 						animationsTime:1,
@@ -38,7 +38,7 @@ function(nodeId)
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 
 s = new sigma({graph: mygraph});	
-
+console.log(mygraph);
 s.addRenderer({container:document.getElementById('container')});
 s.settings(settings_config);
 s.startForceAtlas2(forceconfig);

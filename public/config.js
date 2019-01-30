@@ -10,7 +10,7 @@ for (let index = 0; index < fileNames.length; index++) {
 	labelmakers.push(fileNames[index].charAt(0).toUpperCase()+fileNames[index].slice(1)) //These are labels for each array which will define label (during hover) for the node.
 
 }
-
+console.log(array_for_nodes);
 /*This section produces colors of particular numbers(assigned in number_of_colors),use this if you can adjust node colors on this*/
 
 /*
@@ -39,7 +39,8 @@ var nodes = [],
 	edges = [],
 	nodetype_count = 0,
 	count_nodes = 0,
-	nodeExistence = true;
+	nodeExistence = true,
+	nodeIds = {};
 
 function search_arrayobjects(nameKey, myArray,k){
     for (var i=0; i < myArray.length; i++) {
@@ -68,9 +69,9 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 			if(nodes.length > 0){
 				nodeExistence = checkNode(nodearray[i][ObjectKeys[objectIndex]]);
 			}
-			console.log(nodeExistence)
 			if(nodeExistence == true){
 				if(nodearray[i][ObjectKeys[objectIndex]] != undefined){
+					nodeIds[nodearray[i][ObjectKeys[objectIndex]]] = 0;
 					nodes.push({
 						"x":300*Math.random(),
 						"y":300*Math.random(),
@@ -91,8 +92,7 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	}
 	nodetype_count++;
 }
-console.log(nodes)
-
+console.log(nodeIds);
 var count_edges = 0;
 
 for(iteration=0;iteration<array_for_nodes.length;iteration++){
@@ -100,6 +100,8 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	nodearray = array_for_nodes[iteration];
 	var ObjectKeys = Object.keys(nodearray[0]);
 	for(i=0;i<nodearray.length;i++){
+		nodeIds[nodearray[i][ObjectKeys[0]]] = nodeIds[nodearray[i][ObjectKeys[0]]]+1;
+		nodeIds[nodearray[i][ObjectKeys[1]]] = nodeIds[nodearray[i][ObjectKeys[1]]]+1;
 		edges.push({
 			"source":nodearray[i][ObjectKeys[0]],
 			"target":nodearray[i][ObjectKeys[1]],
@@ -111,6 +113,11 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	}
 }
 
+// nodes.forEach(function(node){
+// 	node['size'] = nodeIds[node['id']];
+// })
+
+console.log(nodeIds);
 // for(i=0;i<players.length;i++){
 // 	if(players[i].Players != undefined){
 // 		edges.push({
@@ -145,10 +152,11 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 // 	}
 // }
 
-var nodecolors = ["#ff0000","#0000ff","#00ff00"];
+var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
 // console.log(arrayofcolors);
-nodes.forEach(function(n){
-	n.color= nodecolors[n.type]; 
+nodes.forEach(function(node){
+	node['size'] = nodeIds[node['id']];
+	node.color= nodecolors[node.type]; 
 	// n.color = arrayofcolors[0];
 });
 

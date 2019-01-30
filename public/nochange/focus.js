@@ -9,7 +9,6 @@ function focus(nodeId,nodeLabel,divisionToChange){
 			{				
 				arr[i] = n.id;
 				str[i++] = n.label;
-				
 			}
 		});
 		arr.splice(arr.indexOf(nodeId),1); //To remove the clicked node itself
