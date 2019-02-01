@@ -26,11 +26,11 @@ var forceconfig={
 
 /*A method 'neighnors' is defined which will take one attribute, node id of a node and return all the nodes which are it's neighbor*/
 sigma.classes.graph.addMethod('neighbors',
-function(nodeId)
+function(node_id)
 {
 	var k,
 	neighbors = {};
-	var index = this.allNeighborsIndex[nodeId] || {};
+	var index = this.allNeighborsIndex[node_id] || {};
 	for (k in index)
 		neighbors[k] = this.nodesIndex[k];
 	return neighbors;

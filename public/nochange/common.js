@@ -112,8 +112,13 @@ console.log({index, nodeId, edges, edgeSource, uniqueAndFrequency});
 	localStorage.setItem("storage",index);
 	$('.coin').click(function(e)
 		{
-		var txt = $(e.target).text();
-
+		// var txt = $(e.target).text();
+		var txtTags = document.querySelector('#selectioninfo').childNodes;
+		var txt = [];
+		for(var txtTagsIndex = 2; txtTagsIndex < txtTags.length; txtTagsIndex++){
+			txt.push(txtTags[txtTagsIndex].textContent)		
+		}
+		console.log(txt)
 		if(txt!=""){			
 			for(i=0;i<common_between.length;i++){
 			if(txt===newDivision[0].textContent){

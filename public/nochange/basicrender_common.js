@@ -1,26 +1,66 @@
 var string = localStorage.getItem("storage");
 var index = JSON.parse("[" + string + "]");
 string = localStorage.getItem("textStorage");
-var text = string;
+var text = string.split(',');
 string = localStorage.getItem("commonStorage");
 var common_index = parseInt(string);
 var common_nodes = [];
 var common_edges = [];
 
+console.log(text)
 
-for(i=0;i<nodes.length;i++)
-{
-if(nodes[i].label===text)
-	{common_nodes.push(nodes[i]);}
-if(nodes[i][common_between[common_index]]===text)
-	{common_nodes.push(nodes[i]);}
+function findFrequency(arr) {
+    var unique = [], frequency = [], prev;
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            unique.push(arr[i]);
+            frequency.push(1);
+        } else {
+            frequency[frequency.length-1]++;
+        }
+        prev = arr[i];
+    }
+    return [unique, frequency];
 }
 
-for(i=0;i<edges.length;i++)
-{
-if(edges[i].source===common_between[common_index]+":"+text)
-	{common_edges.push(edges[i]);}
+let nodeids = []
+for(var textIndex = 0; textIndex < text.length; textIndex++){
+	for(i=0;i<edges.length;i++){
+		if(edges[i].source===text[textIndex]){
+			common_edges.push(edges[i]);
+			nodeids.push(edges[i].target);	
+		}
+	}
 }
+
+nodeids.sort();
+let uniqueAndFrequency = findFrequency(nodeids);
+let unique = uniqueAndFrequency[0];
+let frequency = uniqueAndFrequency[1];
+text = (unique+','+text).split(',');
+
+console.log(text)
+for (let index = 0; index < text.length; index++) {
+	for(i=0;i<nodes.length;i++){
+		if(nodes[i].id==text[index]){
+			common_nodes.push(nodes[i]);
+		}
+	}
+}
+
+
+// for(var j = 0; j < nodeids.length; j++){
+// 	for(i=0;i<nodes.length;i++){
+// 		if(nodes[i].id==nodeids[j])
+// 			{common_nodes.push(nodes[i]);
+// 		}
+// 		// if(nodes[i][common_between[common_index]]===text)
+// 		// 	{common_nodes.push(nodes[i]);}
+// 	}
+// }	
+
+
 
 var nodes = [];var edges = [];
 
@@ -28,10 +68,10 @@ nodes = common_nodes;edges = common_edges;
 
 var commongraph = {nodes,edges};
 
-
+console.log({common_edges,common_nodes,commongraph, frequency})
 
 var settings_config =
-{minNodeSize:5,maxNodeSize:5,minEdgeSize:0.8,maxEdgeSize:0.9,animationsTime:1,labelThreshold:100,/*drawLabels:false,*/
+{minNodeSize:5,maxNodeSize:20,minEdgeSize:0.8,maxEdgeSize:0.9,animationsTime:1,labelThreshold:100,/*drawLabels:false,*/
 enableEdgeHovering:false,enableHovering:false};
 
 var forceconfig={linLogMode:false,outboundAttractionDistribution:false,adjustSizes:true,edgeWeightInfluence:false,scalingRatio:5,
@@ -39,11 +79,12 @@ strongGravityMode:true,gravity:2,barnesHutOptimize:true,barnesHutTheta:0.4,slowD
 
 /*A method 'neighnors' is defined which will take one attribute, node id of a node and return all the nodes which are it's neighbor*/
 sigma.classes.graph.addMethod('neighbors',
-function(nodeId)
+function(node_id)
 {
+	
 	var k,
 	neighbors = {};
-	var index = this.allNeighborsIndex[nodeId] || {};
+	var index = this.allNeighborsIndex[node_id] || {};
 	for (k in index)
 		neighbors[k] = this.nodesIndex[k];
 	return neighbors;
