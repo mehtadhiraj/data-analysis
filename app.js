@@ -37,7 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/:files/commonnodes', function(req, res){
-  res.render('./gen_vis/common',{
+  res.render('./common',{
     filesLength: req.params.files.split('-').length,
     fileNames:req.params.files.split('-')
 })

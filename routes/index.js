@@ -11,7 +11,7 @@ var fileNames = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
-  res.render('./gen_vis/main', {
+  res.render('./main', {
       filesLength : 0
   });
 });
@@ -64,7 +64,7 @@ router.post('/', function(req, res, next){
       }
     }
     // console.log(data);
-    res.render('gen_vis/main', {
+    res.render('./main', {
         filesLength: fileNames.length,
         data : data,
         fileNames : fileNames,
