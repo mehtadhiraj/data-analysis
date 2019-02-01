@@ -59,7 +59,7 @@ for(let i = 0; i < uniqueAndFrequency[0].length; i++){
 		newDivision[newDivisionIndex] = document.createElement('a');
 		newDivision[newDivisionIndex].textContent = uniqueAndFrequency[0][i];
 		newDivision[newDivisionIndex].setAttribute('class','coin');
-		newDivision[newDivisionIndex].setAttribute('href','commonnodes/'+fileNames.join('-'));
+		newDivision[newDivisionIndex].setAttribute('href', fileNames.join('-')+'/commonnodes');
 		newDivision[newDivisionIndex].setAttribute('target','_blank');
 		selectioninfo.appendChild(newDivision[newDivisionIndex]);
 		newDivision[newDivisionIndex].append(document.createElement('br'));
