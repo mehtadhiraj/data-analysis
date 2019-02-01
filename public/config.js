@@ -35,7 +35,8 @@ for(i=0;i<number_of_colors;i++)
 // }
 
 
-var nodes = [],
+var common_between = [],
+	nodes = [],
 	edges = [],
 	nodetype_count = 0,
 	count_nodes = 0,
@@ -72,6 +73,7 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 			if(nodeExistence == true){
 				if(nodearray[i][ObjectKeys[objectIndex]] != undefined){
 					nodeIds[nodearray[i][ObjectKeys[objectIndex]]] = 0;
+					common_between.push(nodearray[i][ObjectKeys[objectIndex]]);
 					nodes.push({
 						"x":300*Math.random(),
 						"y":300*Math.random(),
@@ -156,6 +158,7 @@ var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00',
 // console.log(arrayofcolors);
 nodes.forEach(function(node){
 	node['size'] = nodeIds[node['id']];
+	// node.color= nodecolors[node.size]; 
 	node.color= nodecolors[node.type]; 
 	// n.color = arrayofcolors[0];
 });

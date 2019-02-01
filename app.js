@@ -36,10 +36,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/common', function(req, res, next){
-  res.render('./gen_vis/common');
+app.use('/commonnodes/:files', function(req, res){
+  res.render('./gen_vis/common',{
+    filesLength: req.params.files.split('-').length,
+    fileNames:req.params.files.split('-')
 })
-
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

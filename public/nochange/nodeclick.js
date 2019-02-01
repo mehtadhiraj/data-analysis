@@ -21,22 +21,22 @@ var newDiv = [];
 s.bind('rightClickNode',
 	function(e)
 	{
-		if(e.data.node.type!=leafnodetype){alert("Not Leaf Node!");return;}
+		// if(e.data.node.type!=leafnodetype){alert("Not Leaf Node!");return;}
 		
 		selectioncount++;
 		if(selectioncount===0)
 		{
 			document.getElementById("selectioninfo").innerHTML = "Username added: ";
 		}
-		if(selectioncount<2)
-			{
+		// if(selectioncount<2)
+		// 	{
 			//console.log("registered");
 			var newContent = e.data.node.label;
 			newDiv[selectioncount] = document.createElement('div');
 			newDiv[selectioncount].textContent = newContent;
 			//newDiv[selectioncount].setAttribute('class','coin');
 			selectioninfo.appendChild(newDiv[selectioncount]);
-			}			
+			// }			
 		
 	});
 

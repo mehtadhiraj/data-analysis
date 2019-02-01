@@ -7,7 +7,7 @@ var util = require('util');
 var csv=require('csvtojson')
 var execSync = require('child_process').execSync;
 var code = execSync('node -v');
-
+var fileNames = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {
   
@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next){
   //Logic for reading csv goes here
-  var fileNames = [];
+  
   var fetchData = [];
   var data = [];
   var leafNode;
@@ -75,5 +75,13 @@ router.post('/', function(req, res, next){
     // });  
   })
 })
+
+// router.get('/common/:files', function(req, res, next){
+//   console.log(req.params);
+//   res.render('./gen_vis/common',{
+//     filesLength: req.params.files.split('-').length,
+//     fileNames:req.params.files.split('-')
+//   });
+// })
 
 module.exports = router;
