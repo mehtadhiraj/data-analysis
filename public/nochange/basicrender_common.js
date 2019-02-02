@@ -31,15 +31,20 @@ for(var textIndex = 0; textIndex < text.length; textIndex++){
 			common_edges.push(edges[i]);
 			nodeids.push(edges[i].target);	
 		}
+		if(edges[i].target===text[textIndex]){
+			common_edges.push(edges[i]);
+			nodeids.push(edges[i].source);
+		}
 	}
 }
 
 nodeids.sort();
+console.log(nodeids)
 let uniqueAndFrequency = findFrequency(nodeids);
 let unique = uniqueAndFrequency[0];
 let frequency = uniqueAndFrequency[1];
 text = (unique+','+text).split(',');
-
+text = findFrequency(text)[0];
 console.log(text)
 for (let index = 0; index < text.length; index++) {
 	for(i=0;i<nodes.length;i++){
