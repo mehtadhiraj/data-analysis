@@ -39,7 +39,11 @@ for (let j = 0; j < nodeId.length; j++) {
 	for(var i=0; i< edges.length; i++){
 		if(edges[i].target == nodeId[j]){
 			edgeSource.push(edges[i].source);
-		}	
+		}
+		if(edges[i].source == nodeId[j]){
+			edgeSource.push(edges[i].target);
+		}
+
 	}
 }
 
