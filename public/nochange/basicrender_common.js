@@ -64,7 +64,13 @@ for (let index = 0; index < text.length; index++) {
 // 		// 	{common_nodes.push(nodes[i]);}
 // 	}
 // }	
+var nodeColors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
 
+for (let index = 0; index < unique.length; index++) {
+	common_nodes[index].size = frequency[index];
+	common_nodes[index].color = nodeColors[common_nodes[index].type];
+	
+}
 
 
 var nodes = [];var edges = [];
