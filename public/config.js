@@ -107,7 +107,6 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 		// If the combination of source and target node exist then skip else create a new edge
 		if(edgeExistence.length > 0){
 			edge = edgeExistence.indexOf(nodearray[i][ObjectKeys[0]] + "+" + nodearray[i][ObjectKeys[1]]);
-			console.log(edge);
 		}
 		if(edge == -1){
 			edgeExistence.push(nodearray[i][ObjectKeys[0]] + "+" + nodearray[i][ObjectKeys[1]]);

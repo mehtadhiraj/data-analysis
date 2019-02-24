@@ -37,15 +37,9 @@ $("#common").click(function(){
 	for (let j = 0; j < nodeId.length; j++) {
 		for(var i=0; i< edges.length; i++){
 			if(edges[i].target == nodeId[j]){
-				console.log("target : " + edges[i].target)
-				console.log("source : " + edges[i].source)
-				console.log({i,j});
 				edgeSource.push(edges[i].source);
 			}
 			if(edges[i].source == nodeId[j]){
-				console.log("target : " + edges[i].target)
-				console.log("source : " + edges[i].source)
-				console.log({i,j});
 				edgeSource.push(edges[i].target);
 			}
 
@@ -53,6 +47,8 @@ $("#common").click(function(){
 	}
 
 	let uniqueAndFrequency = findFrequency(edgeSource);
+
+	console.log({ selectioncount, nodeId, edgeSource, uniqueAndFrequency });
 
 	// Appending a common ndoes list
 	let newDivision = [];
