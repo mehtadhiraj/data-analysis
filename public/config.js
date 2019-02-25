@@ -44,6 +44,7 @@ var common_between = [],
 	edgeExistence = [],
 	edge = -1;
 	nodeIds = {};
+	// nodeData = {};
 
 // Search function for all the nodes
 function search_arrayobjects(nameKey, myArray,k){
@@ -69,6 +70,7 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	var nodearray = [];
 	nodearray = array_for_nodes[iteration];
 	var ObjectKeys = Object.keys(nodearray[0]);
+	// console.log(ObjectKeys);
 	for(i=0;i<nodearray.length;i++){
 		for(var objectIndex = 0; objectIndex < 2; objectIndex++){
 			// If node is created then skip else create a new node
@@ -79,6 +81,14 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 				if(nodearray[i][ObjectKeys[objectIndex]] != undefined){
 					nodeIds[nodearray[i][ObjectKeys[objectIndex]]] = 0;
 					common_between.push(nodearray[i][ObjectKeys[objectIndex]]);
+					// nodeData["x"] = 300*Math.random(); 
+					// nodeData["y"] = 300*Math.random();                    
+					// nodeData["size"] = 0.005*Math.random();
+					// nodeData["label"] = nodearray[i][ObjectKeys[objectIndex]];
+					// nodeData["id"] = nodearray[i][ObjectKeys[objectIndex]];
+					// nodeData["type"] = nodetype_count;
+					
+					// console.log(nodeData);
 					nodes.push({
 						"x":300*Math.random(),
 						"y":300*Math.random(),
@@ -87,6 +97,13 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 						"id":nodearray[i][ObjectKeys[objectIndex]],
 						"type":nodetype_count
 					});
+					if(ObjectKeys.length > 2){
+						for (var iter = 0; iter < ObjectKeys.length; iter++) {
+							// console.log(ObjectKeys[iter]);
+							nodes[nodes.length-1][ObjectKeys[iter]] = nodearray[i][ObjectKeys[iter]];
+						}
+					}
+					// nodes.push(nodeData);
 					count_nodes++;
 				}
 			}
@@ -122,22 +139,7 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	}
 }
 
-function findUnique(arr) {
-	var unique = [], frequency = [], prev;
-	arr.sort();
-	for ( var i = 0; i < arr.length; i++ ) {
-		if ( arr[i] !== prev ) {
-			unique.push(arr[i]);
-			// frequency.push(1);
-		} 
-		// else {
-		// 	frequency[frequency.length-1]++;
-		// }
-		prev = arr[i];
-	}
-	return unique;
-}
-console.log(nodeIds);
+console.log({nodeIds, nodes, edges});
 var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
 let degree = [];
 // Setting node colour and size
