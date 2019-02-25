@@ -83,6 +83,9 @@ input[type=text], select {
     height: 250px;
     overflow: auto;
     padding-right: 15px;
+    position: absolute;
+    z-index: 10;
+    background-color: #fff;
     color:#2ea7bd;
 }
 
