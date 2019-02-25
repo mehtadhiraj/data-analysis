@@ -38,7 +38,7 @@ function(node_id)
 /*--------------------------------------------------------------------------------------------------------------------------------*/
 
 s = new sigma({graph: mygraph});	
-console.log(mygraph);
+// console.log(mygraph);
 s.addRenderer({container:document.getElementById('container')});
 s.settings(settings_config);
 s.startForceAtlas2(forceconfig);

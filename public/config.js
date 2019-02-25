@@ -102,13 +102,13 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	nodearray = array_for_nodes[iteration];
 	var ObjectKeys = Object.keys(nodearray[0]);
 	for(i=0;i<nodearray.length;i++){
-		nodeIds[nodearray[i][ObjectKeys[0]]] = nodeIds[nodearray[i][ObjectKeys[0]]]+1;
-		nodeIds[nodearray[i][ObjectKeys[1]]] = nodeIds[nodearray[i][ObjectKeys[1]]]+1;
 		// If the combination of source and target node exist then skip else create a new edge
 		if(edgeExistence.length > 0){
 			edge = edgeExistence.indexOf(nodearray[i][ObjectKeys[0]] + "+" + nodearray[i][ObjectKeys[1]]);
 		}
 		if(edge == -1){
+			nodeIds[nodearray[i][ObjectKeys[0]]] = nodeIds[nodearray[i][ObjectKeys[0]]]+1;
+			nodeIds[nodearray[i][ObjectKeys[1]]] = nodeIds[nodearray[i][ObjectKeys[1]]]+1;
 			edgeExistence.push(nodearray[i][ObjectKeys[0]] + "+" + nodearray[i][ObjectKeys[1]]);
 			edges.push({
 				"source":nodearray[i][ObjectKeys[0]],
@@ -122,9 +122,27 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	}
 }
 
+function findUnique(arr) {
+	var unique = [], frequency = [], prev;
+	arr.sort();
+	for ( var i = 0; i < arr.length; i++ ) {
+		if ( arr[i] !== prev ) {
+			unique.push(arr[i]);
+			// frequency.push(1);
+		} 
+		// else {
+		// 	frequency[frequency.length-1]++;
+		// }
+		prev = arr[i];
+	}
+	return unique;
+}
+console.log(nodeIds);
 var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
+let degree = [];
 // Setting node colour and size
 nodes.forEach(function(node){
+	
 	node['size'] = nodeIds[node['id']];
 	node.color= nodecolors[node.type]; 
 });
