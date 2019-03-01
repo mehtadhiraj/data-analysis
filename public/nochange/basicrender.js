@@ -36,13 +36,57 @@ function(node_id)
 	return neighbors;
 });
 /*--------------------------------------------------------------------------------------------------------------------------------*/
+// Set the size of each node based on degree
+s1 = new sigma({graph: mygraph});	
+let degreeNodes = [],
+	nodeSize    = [],
+	i           = 0,
+	maxvalue    = 0;
 
-s = new sigma({graph: mygraph});	
-// console.log(mygraph);
+nodes.forEach(function (node) {
+	nodeSize[i]  = degreeNodes[node.id] = Object.keys(s1.graph.neighbors(node.id)).length;
+	node['size']  = degreeNodes[node.id];
+	i++;
+	if(degreeNodes[node.id] > maxvalue){
+		maxvalue = degreeNodes[node.id];
+	}
+});
+
+let nodeWithMaxDegree = [];
+nodes.forEach(function (node) {
+	if(degreeNodes[node.id] == maxvalue){
+		nodeWithMaxDegree.push(node.id + ": " + maxvalue);
+	}
+})
+
+
+// Appending a common ndoes list
+let newDivision = [];
+let newDivisionIndex = 0
+maxdegree = document.getElementById('maxdegree');
+for(let i = 0; i < nodeWithMaxDegree.length; i++){
+	newDivision[newDivisionIndex] = document.createElement('div');
+	newDivision[newDivisionIndex].textContent = nodeWithMaxDegree[i];
+	// newDivision[newDivisionIndex].setAttribute('class','coin');
+	// newDivision[newDivisionIndex].setAttribute('href', fileNames.join('-')+'/commonnodes');
+	// newDivision[newDivisionIndex].setAttribute('target','_blank');
+	maxdegree.appendChild(newDivision[newDivisionIndex]);
+	newDivision[newDivisionIndex].append(document.createElement('br'));
+	newDivisionIndex++;				
+}
+
+localStorage.setItem("nodeStorage",nodes);
+mygraph = {nodes, edges};
+
+// Create new sigma graph with the size updated
+s = new sigma({graph: mygraph});
 s.addRenderer({container:document.getElementById('container')});
 s.settings(settings_config);
 s.startForceAtlas2(forceconfig);
 s.refresh();
 
+console.log(degreeNodes);
+console.log(nodes);
+console.log(nodeSize);
 
 var selectioncount  = -1;

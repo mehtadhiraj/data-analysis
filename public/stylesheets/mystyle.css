@@ -79,7 +79,7 @@ input[type=text], select {
 .searchbox{
     overflow: hidden;
 }
-#testautocomplete-list{
+/* #testautocomplete-list{
     height: 250px;
     overflow: auto;
     padding-right: 15px;
@@ -91,7 +91,21 @@ input[type=text], select {
 
 #testautocomplete-list div:hover{
     color:#9e2a2a;
-}
+} */
+
+.ui-autocomplete {
+    /* max-height: 100px; */
+    height: 350px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  * html .ui-autocomplete {
+    height: 250px;
+  }
 .button1 {
     background-color: white; 
     color: black; 

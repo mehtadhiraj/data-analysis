@@ -7,7 +7,10 @@ nodes.forEach(function(n){array.push(n.label)});
 
 
 
-autocomplete(document.getElementById("test"),array);
+// autocomplete(document.getElementById("test"),array);
+$( "#test" ).autocomplete({
+	source: array
+  });
 /*Takes the label,i.e username from the function called above,matches with it with the id of the node and rest of the work is same as described in the nodeclick code(nodeclick.js)*/
 
 $("#buttonId").click(function(){

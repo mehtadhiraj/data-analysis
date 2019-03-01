@@ -36,7 +36,7 @@ function focus(nodeId,nodeLabel,divisionToChange){
 							
 							for(var attr in nodes[index])
 							{
-								if(attr!="x" && attr!="y" && attr!="size" && attr!="label" && attr!="id" && attr!="type" && attr!="color")
+								if(attr!="x" && attr!="y" && attr!="label" && attr !='size' && attr!="id" && attr!="type" && attr!="color")
 								{
 								//console.log(attr+":"+nodes[index][attr]);
 								var newcontent = document.createTextNode(attr+":"+nodes[index][attr]);

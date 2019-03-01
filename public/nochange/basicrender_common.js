@@ -2,12 +2,15 @@ var string = localStorage.getItem("storage");
 var index = JSON.parse("[" + string + "]");
 string = localStorage.getItem("textStorage");
 var text = string.split(',');
+var copyText = text;
 string = localStorage.getItem("commonStorage");
+var selectedNode = localStorage.getItem('selectedStorage');
+selectedNode = selectedNode.split(',');
 var common_index = parseInt(string);
 var common_nodes = [];
 var common_edges = [];
 
-console.log(text)
+console.log(text, selectedNode);
 
 function findFrequency(arr) {
     var unique = [], frequency = [], prev;
@@ -45,10 +48,11 @@ let unique = uniqueAndFrequency[0];
 let frequency = uniqueAndFrequency[1];
 text = (unique+','+text).split(',');
 text = findFrequency(text)[0];
-console.log(text)
+console.log(text);
+console.log(common_index);
 for (let index = 0; index < text.length; index++) {
 	for(i=0;i<nodes.length;i++){
-		if(nodes[i].id==text[index]){
+		if(nodes[i].id == text[index]){
 			common_nodes.push(nodes[i]);
 		}
 	}
@@ -68,8 +72,15 @@ var nodeColors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00',
 
 for (let index = 0; index < unique.length; index++) {
 	// common_nodes[index].size = frequency[index];
-	common_nodes[index].color = nodeColors[common_nodes[index].type];
-	
+	if(selectedNode.indexOf(text[index]) != -1){
+		common_nodes[index].color = "#22ffa0";
+	}else{
+		if(copyText.indexOf(text[index]) != -1){
+			common_nodes[index].color = "#a0ff22";
+		}else{
+			common_nodes[index].color = nodeColors[common_nodes[index].type];
+		}
+	}
 }
 
 
@@ -107,7 +118,15 @@ function(node_id)
 
 
 
-s = new sigma({graph: commongraph});	
+s1 = new sigma({graph: commongraph});	
+let degreeNodes = [];
+
+common_nodes.forEach(function (node) {
+	degreeNodes[node.id] = Object.keys(s1.graph.neighbors(node.id)).length;
+	// data = degreeNodes[node.id];
+	node['size']  = degreeNodes[node.id];
+});
+s = new sigma({graph: commongraph});
 s.addRenderer({container:document.getElementById('commoncontainer')});
 s.settings(settings_config);
 s.startForceAtlas2(forceconfig);
