@@ -39,6 +39,11 @@ function(node_id){
 });
 
 // Get random hexadecimal colour value
+function getRandomNumber(low, high) {
+	var r = Math.floor(Math.random() * (high - low + 1)) + low;
+	return r;
+}
+
 function getRandomColor() {
 	var characters = "0123456789ABCDEF";
 	var color = '#';
@@ -49,6 +54,7 @@ function getRandomColor() {
 	
 	return color;
 }
+
 
 // Assigning each node a colour
 function setNodeColour(neighbors, length, color){

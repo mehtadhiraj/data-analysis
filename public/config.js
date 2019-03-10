@@ -36,14 +36,14 @@ for(i=0;i<number_of_colors;i++)
 
 
 var common_between = [],
-	nodes = [],
-	edges = [],
-	nodetype_count = 0,
-	count_nodes = 0,
-	nodeExistence = true,
-	edgeExistence = [],
-	edge = -1;
-	nodeIds = {};
+	nodes 				   = [],
+	edges 					 = [],
+	nodetype_count   = 0,
+	count_nodes      = 0,
+	nodeExistence    = true,
+	edgeExistence    = [],
+	edge             = -1,
+	nodeIds 				 = {};
 	// nodeData = {};
 
 // Search function for all the nodes
@@ -132,63 +132,10 @@ let nodeName       = [],
 	nodeDegree 	   = [],
 	count          = 0,
 	nodeDegreeName = {};
-
-nodes.forEach(function (node) {
-	nodeName.push(node.id);
-	nodeDegree[count] = 0;
-	nodeDegreeName[node.id] = 0;
-	edges.forEach(function (edge) {
-		if(edge.source == node.id){
-			nodeDegree[count]++;
-			nodeDegreeName[node.id]++;  
-		}else{
-			if(edge.target == node.id){
-				nodeDegree[count]++;
-				nodeDegreeName[node.id]++;
-			}	
-		}
-	})
-	count++;
-})
-
-let indexOfNodes = [];
-let degreeCount = 0; 
-let maxValue = Math.max.apply(nodeDegree);
-for (let i = 0; i < nodeDegree.length; i++) {
-	if(nodeDegree[i] == maxValue){
-		indexOfNodes[degreeCount] = nodeDegree.indexOf(maxValue);
-		nodeDegree.splice(maxValue, 1);
-	}
-}
-
-console.log({nodeIds, nodes, edges, nodeDegree, nodeName, maxValue, nodeDegreeName});
-var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
-let degree = [];
-
- 
-function getRandomNumber(low, high) {
-	var r = Math.floor(Math.random() * (high - low + 1)) + low;
-	return r;
-}
-
-function getRandomColor() {
-	var characters = "0123456789ABCDEF";
-	var color = '#';
-  
-	for (var i = 0; i < 6; i++) {
-	  color += characters[getRandomNumber(0, 15)];
-	}
 	
-	return color;
-}
-
-// Setting node colour and size
-nodes.forEach(function(node){
-	
-	// node['size'] = nodeDegreeName[node.id];
-	// node.color= nodecolors[node.type]; 
-	node.color = getRandomColor();
-});
+console.log({nodeIds, nodes, edges, nodeDegree, nodeName, nodeDegreeName});
+// var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
+// let degree = [];
 
 var mygraph = {nodes,edges};
 localStorage.setItem("nodeStorage",nodes);
