@@ -94,8 +94,7 @@ input[type=text], select {
 } */
 
 .ui-autocomplete {
-    /* max-height: 100px; */
-    height: 350px;
+    max-height: 350px;
     overflow-y: auto;
     /* prevent horizontal scrollbar */
     overflow-x: hidden;
@@ -119,7 +118,7 @@ input[type=text], select {
 .button-cls
 {
 position:absolute;
-height:130px;
+height:180px;
 width:320px;
 left:10px;
 top:30px;
@@ -208,3 +207,10 @@ overflow:scroll;
 /*right:0px;
 bottom:0px;
 }*/
+
+.selected-nodes{
+    color: #22ffa0;
+}
+.common-nodes{
+    color: #a0ff22;
+}

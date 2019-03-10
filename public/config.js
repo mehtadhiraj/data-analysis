@@ -164,11 +164,30 @@ for (let i = 0; i < nodeDegree.length; i++) {
 console.log({nodeIds, nodes, edges, nodeDegree, nodeName, maxValue, nodeDegreeName});
 var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
 let degree = [];
+
+ 
+function getRandomNumber(low, high) {
+	var r = Math.floor(Math.random() * (high - low + 1)) + low;
+	return r;
+}
+
+function getRandomColor() {
+	var characters = "0123456789ABCDEF";
+	var color = '#';
+  
+	for (var i = 0; i < 6; i++) {
+	  color += characters[getRandomNumber(0, 15)];
+	}
+	
+	return color;
+}
+
 // Setting node colour and size
 nodes.forEach(function(node){
 	
 	// node['size'] = nodeDegreeName[node.id];
-	node.color= nodecolors[node.type]; 
+	// node.color= nodecolors[node.type]; 
+	node.color = getRandomColor();
 });
 
 var mygraph = {nodes,edges};
