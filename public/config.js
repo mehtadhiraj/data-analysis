@@ -11,29 +11,6 @@ for (let index = 0; index < fileNames.length; index++) {
 	labelmakers.push(fileNames[index].charAt(0).toUpperCase()+fileNames[index].slice(1)) //These are labels for each array which will define label (during hover) for the node.
 
 }
-/*This section produces colors of particular numbers(assigned in number_of_colors),use this if you can adjust node colors on this*/
-
-/*
-
-var number_of_colors = 32; //Change this as per requirement
-var palette = new DistinctColors({count: number_of_colors});
-var arrayofcolors = [];var red,green,blue;
-for(i=0;i<number_of_colors;i++)
-	{
-	red = palette[i]._rgb[0];
-	green = palette[i]._rgb[1];
-	blue = palette[i]._rgb[2];
-	arrayofcolors[i] = rgbToHex(red, green, blue);
-	}
-
-*/
-
-/*--------------------------------------------------------------------------------------------------------------------------------*/
-// var leafnodetype;
-// for(i=0;i<array_for_nodes.length;i++){
-// 	if(array_for_nodes[i]===arrayofleafnodes){leafnodetype=i;}
-// }
-
 
 var common_between = [],
 	nodes 				   = [],
@@ -44,8 +21,7 @@ var common_between = [],
 	edgeExistence    = [],
 	edge             = -1,
 	nodeIds 				 = {};
-	// nodeData = {};
-
+	
 // Search function for all the nodes
 function search_arrayobjects(nameKey, myArray,k){
     for (var i=0; i < myArray.length; i++) {
@@ -70,7 +46,6 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	var nodearray = [];
 	nodearray = array_for_nodes[iteration];
 	var ObjectKeys = Object.keys(nodearray[0]);
-	// console.log(ObjectKeys);
 	for(i=0;i<nodearray.length;i++){
 		for(var objectIndex = 0; objectIndex < 2; objectIndex++){
 			// If node is created then skip else create a new node
@@ -84,7 +59,6 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 					nodes.push({
 						"x":300*Math.random(),
 						"y":300*Math.random(),
-						// "size":0.005*Math.random(),
 						"label":nodearray[i][ObjectKeys[objectIndex]],
 						"id":nodearray[i][ObjectKeys[objectIndex]],
 						"type":nodetype_count
@@ -128,14 +102,7 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 		}
 	}
 }
-let nodeName       = [],
-	nodeDegree 	   = [],
-	count          = 0,
-	nodeDegreeName = {};
-	
-console.log({nodeIds, nodes, edges, nodeDegree, nodeName, nodeDegreeName});
-// var nodecolors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
-// let degree = [];
+console.log({nodeIds, nodes, edges});
 
 var mygraph = {nodes,edges};
 localStorage.setItem("nodeStorage",nodes);

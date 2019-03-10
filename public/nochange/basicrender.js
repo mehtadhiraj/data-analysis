@@ -120,7 +120,7 @@ for(let i = 0; i < nodeWithMaxDegree.length; i++){
 localStorage.setItem("nodeStorage",nodes);
 mygraph = {nodes, edges};
 
-// Create new sigma graph with the size updated
+// Create new sigma graph with the size and colour updated
 s = new sigma({graph: mygraph});
 s.addRenderer({container:document.getElementById('container')});
 s.settings(settings_config);
