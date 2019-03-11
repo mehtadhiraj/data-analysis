@@ -33,9 +33,11 @@ for(var textIndex = 0; textIndex < text.length; textIndex++){
 		if(edges[i].source===text[textIndex]){
 			common_edges.push(edges[i]);
 			nodeids.push(edges[i].target);	
+			nodeids.push(edges[i].source);
 		}
 		if(edges[i].target===text[textIndex]){
 			common_edges.push(edges[i]);
+			nodeids.push(edges[i].target);
 			nodeids.push(edges[i].source);
 		}
 	}
@@ -68,7 +70,7 @@ for (let index = 0; index < text.length; index++) {
 // 		// 	{common_nodes.push(nodes[i]);}
 // 	}
 // }	
-var nodeColors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff'];
+var nodeColors = ["#ff0000","#0000ff","#00ff00","#000000", '#ff00ff', '#ffff00', '#00ffff', '#f0f0f0', '#0fff0f'];
 
 for (let index = 0; index < unique.length; index++) {
 	// common_nodes[index].size = frequency[index];

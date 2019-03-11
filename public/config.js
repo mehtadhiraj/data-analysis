@@ -17,7 +17,7 @@ var common_between = [],
 	edges 					 = [],
 	nodetype_count   = 0,
 	count_nodes      = 0,
-	nodeExistence    = true,
+	nodeExistence    = [],
 	edgeExistence    = [],
 	edge             = -1,
 	nodeIds 				 = {};
@@ -34,7 +34,7 @@ function search_arrayobjects(nameKey, myArray,k){
 // Check whether node is created or not
 function checkNode(id) {
 	for (let j = 0; j < nodes.length; j++) {
-		if(nodes[j]['id'] === id){
+		if(nodes[j]['id'] == id){
 			return false;
 		}
 	}
@@ -49,13 +49,14 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 	for(i=0;i<nodearray.length;i++){
 		for(var objectIndex = 0; objectIndex < 2; objectIndex++){
 			// If node is created then skip else create a new node
-			if(nodes.length > 0){
-				nodeExistence = checkNode(nodearray[i][ObjectKeys[objectIndex]]);
-			}
-			if(nodeExistence == true){
+			// if(nodes.length > 0){
+			// 	nodeExistence = checkNode(nodearray[i][ObjectKeys[objectIndex]]);
+			// }
+			if(nodeExistence.indexOf(nodearray[i][ObjectKeys[objectIndex]]) == -1){
 				if(nodearray[i][ObjectKeys[objectIndex]] != undefined){
 					nodeIds[nodearray[i][ObjectKeys[objectIndex]]] = 0;
 					common_between.push(nodearray[i][ObjectKeys[objectIndex]]);
+					nodeExistence.push(nodearray[i][ObjectKeys[objectIndex]])
 					nodes.push({
 						"x":300*Math.random(),
 						"y":300*Math.random(),
@@ -102,7 +103,7 @@ for(iteration=0;iteration<array_for_nodes.length;iteration++){
 		}
 	}
 }
-console.log({nodeIds, nodes, edges});
+console.log({nodeIds, nodes, edges, nodeExistence});
 
 var mygraph = {nodes,edges};
 localStorage.setItem("nodeStorage",nodes);
