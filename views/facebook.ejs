@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Facebook Data Visualization</title>
+	</head>
+
+<body>
+		<link rel="stylesheet" href="/stylesheets/jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">
+		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+		<!-- Data to be given to javascript -->
+		<span id="fileLength" hidden><%= filesLength %></span>
+		<% if(filesLength > 0){ %>	
+			<span id="fileNames" hidden><%= fileNames %></span>
+			<span id="leafNode" hidden><%= leafNode %></span>
+		<% } %>
+		<div id="container"></div> <!--The container to hold the graph-->
+
+		<div id="buttons" class="button-cls">
+			<button id="stopforce" class="button button1">Pause</button>
+			<button id="resetbutton" class="button button1">Reset</button>	
+			<button id="common" class="button button1">Find Common</button>
+			<br/><br/>
+				Search users here:
+				<input type="text" id="test" value="">
+			<button id="buttonId" class="button button2" cursor="pointer">Search</button><br><br><br>
+		</div>
+		<!-- <div class="import-div" id="import-div">
+			Import csv files: <br><br>
+			<form action="/" method="POST" enctype="multipart/form-data" name="form">
+				<input type="button" id="add" value="+" class="button button1">
+				<input type="submit" value="Upload" class="button button2"><br>
+				<input type="file" name="csvfile0" id="csvFile0" class="csv-file button button1" required="true"> -->
+				<!-- <input type="checkbox" name="leafnode0" id="leafnode0"> <br> -->
+				<!-- <input type="file" name="csvfile1" id="csvFile1" class="csv-file button button1"> -->
+				<!-- <input type="checkbox" name="leafnode1" id="leafnode1"> <br> -->
+			<!-- </form>
+		</div> -->
+
+		<!-- <div id="nodeinfo">Information of Clicked Node:<br></div> -->
+		<section class="ac-container">
+				<div id="nodeinfodiv">
+					<input id="ac-1" name="accordion-1" type="checkbox" />
+					<label for="ac-1">Node Information</label>
+					<article class="ac-medium" id="nodeinfo">
+						 Click on a Node to view Information
+					</article>
+				</div>
+				<div>
+					<input id="ac-2" name="accordion-1" type="checkbox" />
+					<label for="ac-2">Connections</label>
+					<article class="ac-medium" id="connectinfo">
+						 Click on a Node to view connections
+					</article>
+				</div>
+				<div>
+					<input id="ac-3" name="accordion-1" type="checkbox" />
+					<label for="ac-3">Mutual</label>
+					<article class="ac-medium" id="selectioninfo">
+						 Right click on leaf nodes to find mutuals
+					</article>
+				</div>
+				<div>
+					<input id="ac-4" name="accordion-1" type="checkbox" />
+					<label for="ac-4">Maximum Degree</label>
+					<article class="ac-medium" id="maxdegree">
+						Given nodes have the maximum degree
+					</article>
+				</div>
+		</section>
+
+
+		<!-- <div id="searchinfo">Information of Searched Node:<br></div>  -->
+		<!-- <div id="edgeinfo">Information of Clicked Edge:<br></div> -->
+
+		<!--Importing the JS Library files necessary-->
+		<script type="text/javascript" src="lib/sigma.min.js"></script>
+		<script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="lib/sigma.plugins.filter.js"></script>
+		<script type="text/javascript" src="lib/sigma.layout.forceAtlas2.min.js"></script>
+		<script type="text/javascript" src="lib/sigma.layout.noverlap.min.js"></script>
+		<script type="text/javascript" src="lib/sigma.canvas.edges.curve.js"></script>
+		<!--<script type="text/javascript" src="sigma.renderers.edgeLabels.min.js"></script>-->
+		<script type="text/javascript" src="lib/sigma.exporters.json.js"></script>
+		<script type="text/javascript" src="lib/autocomplete.js"></script>
+		<script type="text/javascript" src="lib/distinct-colors.min.js"></script>
+		<script type="text/javascript" src="lib/rgb2hex.js"></script>
+
+
+		<!--Importing the data files-->
+		<% if(filesLength > 0){
+				for(var i = 0; i < filesLength; i++){ 
+		%>		
+					<script type="text/javascript" src="data/<%= fileNames[i] %>.js"></script>
+		<%
+				}
+			} 
+		%>
+		<script type="text/javascript" src="config.js"></script>
+		<!-- <script type="text/javascript" src="methods.js"></script>
+		<script type="text/javascript" src="nodes_and_edges_generator.js"></script>
+		 -->
+		<script type="text/javascript" src="nochange/basicrender.js"></script>
+		<script type="text/javascript" src="nochange/nodehover.js"></script>
+		<script type="text/javascript" src="nochange/stuffs.js"></script>
+		<script type="text/javascript" src="nochange/force.js"></script>
+		<script type="text/javascript" src="nochange/focus.js"></script>
+		<script type="text/javascript" src="nochange/nodeclick.js"></script>
+		<script type="text/javascript" src="nochange/common.js"></script>
+		<script type="text/javascript" src="nochange/function.js"></script>
+		<script src="/javascripts/jquery.js"></script>
+		<script src="/javascripts/jquery-ui.js"></script>
+		<script type="text/javascript" src="nochange/search.js"></script>
+		<script type="text/javascript" src="nochange/reset.js"></script>
+		
+		<script type="text/javascript" src="/javascripts/script.js"></script>
+        <script>
+             
+        </script>
+</body>
+</html>

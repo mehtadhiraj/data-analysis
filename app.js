@@ -8,7 +8,6 @@ var bodyParser = require("body-parser");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 var app = express();
 
 // view engine setup
@@ -23,24 +22,13 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Database connection
-// MongoClient.connect('mongodb://127.0.0.1:27017/animals', function (err, db) {
-//   if (err) throw err
-
-//   // db.collection('mammals').find().toArray(function (err, result) {
-//   //   if (err) throw err
-
-//   //   console.log(result)
-//   // })
-// })
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/:files/commonnodes', function(req, res){
   res.render('./common',{
     filesLength: req.params.files.split('-').length,
     fileNames:req.params.files.split('-')
-})
+  })
 });
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -60,4 +48,4 @@ app.use(function(err, req, res, next) {
 
 console.log('ROutes initialized');
 
-module.exports = app;
+module.exports = app ;
