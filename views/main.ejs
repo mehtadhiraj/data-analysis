@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Facebook Data Visualization</title>
+		<title>Data Visualization</title>
 	</head>
 
 <body>
@@ -10,10 +10,23 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 		<!-- Data to be given to javascript -->
 		<div id="container">
-			<h1 style="margin-left:500px;"><a href="/facebook">Facebook Data Visualization</a></h1>
+			<div align="center">
+				<h2 align="center">View Facebook Data</h2>
+				<h3><a class="button button2" href="/facebook" target="_blank">Facebook Data Visualization</a></h3>
+				<h2 align="center">Your projects</h2>
+				<% if(projectName.length > 0){ %>
+					<% projectName.forEach((project)=>{ %>
+						<h3><a class="button button2" href="/project/<%= project %>" target="_blank"><%= project %></a></h3>
+					<% }) %>
+				<% } else{ %>
+					<h3>No projects created</h3>
+					<h3>Create a new project</h3>
+					<h1> <<== </h1>
+				<% } %>
+			</div>
 		</div> <!--The container to hold the graph-->
 
-		<div id="buttons" class="button-cls">
+		<!-- <div id="buttons" class="button-cls">
 			<button id="stopforce" class="button button1">Pause</button>
 			<button id="resetbutton" class="button button1">Reset</button>	
 			<button id="common" class="button button1">Find Common</button>
@@ -21,12 +34,9 @@
 				Search users here:
 				<input type="text" id="test" value="">
 			<button id="buttonId" class="button button2" cursor="pointer">Search</button><br><br><br>
-		</div>
+		</div> -->
 		<div class="import-div" id="import-div">
-				
-			<% if(projectName.length > 0){ %>
-				<h1><a href="/project/<%= projectName %>"><%= projectName %></a></h1>	
-			<% } %>
+			
 			Create New Project: <br><br>
 			<form action="/" method="POST" enctype="multipart/form-data" name="form">
 				<input type="button" id="add" value="+" class="button button1">
@@ -40,7 +50,7 @@
 		</div>
 
 		<!-- <div id="nodeinfo">Information of Clicked Node:<br></div> -->
-		<section class="ac-container">
+		<!-- <section class="ac-container">
 				<div id="nodeinfodiv">
 					<input id="ac-1" name="accordion-1" type="checkbox" />
 					<label for="ac-1">Node Information</label>
@@ -69,7 +79,7 @@
 						Given nodes have the maximum degree
 					</article>
 				</div>
-		</section>
+		</section> -->
 
 
 		<!-- <div id="searchinfo">Information of Searched Node:<br></div>  -->

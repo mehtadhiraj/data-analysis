@@ -1,18 +1,17 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Facebook Data Visualization</title>
+		<title><%= projectName %> Data Visualization</title>
 	</head>
 
 <body>
 		<link rel="stylesheet" href="/stylesheets/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="stylesheets/mystyle.css">
-		<link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/mystyle.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 		<!-- Data to be given to javascript -->
 		<span id="fileLength" hidden><%= filesLength %></span>
 		<% if(filesLength > 0){ %>	
 			<span id="fileNames" hidden><%= fileNames %></span>
-			<span id="leafNode" hidden><%= leafNode %></span>
 		<% } %>
 		<div id="container"></div> <!--The container to hold the graph-->
 
@@ -74,44 +73,44 @@
 		<!-- <div id="edgeinfo">Information of Clicked Edge:<br></div> -->
 
 		<!--Importing the JS Library files necessary-->
-		<script type="text/javascript" src="lib/sigma.min.js"></script>
-		<script type="text/javascript" src="lib/jquery-3.3.1.min.js"></script>
-		<script type="text/javascript" src="lib/sigma.plugins.filter.js"></script>
-		<script type="text/javascript" src="lib/sigma.layout.forceAtlas2.min.js"></script>
-		<script type="text/javascript" src="lib/sigma.layout.noverlap.min.js"></script>
-		<script type="text/javascript" src="lib/sigma.canvas.edges.curve.js"></script>
+		<script type="text/javascript" src="/lib/sigma.min.js"></script>
+		<script type="text/javascript" src="/lib/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="/lib/sigma.plugins.filter.js"></script>
+		<script type="text/javascript" src="/lib/sigma.layout.forceAtlas2.min.js"></script>
+		<script type="text/javascript" src="/lib/sigma.layout.noverlap.min.js"></script>
+		<script type="text/javascript" src="/lib/sigma.canvas.edges.curve.js"></script>
 		<!--<script type="text/javascript" src="sigma.renderers.edgeLabels.min.js"></script>-->
-		<script type="text/javascript" src="lib/sigma.exporters.json.js"></script>
-		<script type="text/javascript" src="lib/autocomplete.js"></script>
-		<script type="text/javascript" src="lib/distinct-colors.min.js"></script>
-		<script type="text/javascript" src="lib/rgb2hex.js"></script>
+		<script type="text/javascript" src="/lib/sigma.exporters.json.js"></script>
+		<script type="text/javascript" src="/lib/autocomplete.js"></script>
+		<script type="text/javascript" src="/lib/distinct-colors.min.js"></script>
+		<script type="text/javascript" src="/lib/rgb2hex.js"></script>
 
 
 		<!--Importing the data files-->
 		<% if(filesLength > 0){
 				for(var i = 0; i < filesLength; i++){ 
 		%>		
-					<script type="text/javascript" src="data/<%= fileNames[i] %>.js"></script>
+					<script type="text/javascript" src="/data/<%= fileNames[i] %>.js"></script>
 		<%
 				}
 			} 
 		%>
-		<script type="text/javascript" src="config.js"></script>
+		<script type="text/javascript" src="/config.js"></script>
 		<!-- <script type="text/javascript" src="methods.js"></script>
 		<script type="text/javascript" src="nodes_and_edges_generator.js"></script>
 		 -->
-		<script type="text/javascript" src="nochange/basicrender.js"></script>
-		<script type="text/javascript" src="nochange/nodehover.js"></script>
-		<script type="text/javascript" src="nochange/stuffs.js"></script>
-		<script type="text/javascript" src="nochange/force.js"></script>
-		<script type="text/javascript" src="nochange/focus.js"></script>
-		<script type="text/javascript" src="nochange/nodeclick.js"></script>
-		<script type="text/javascript" src="nochange/common.js"></script>
-		<script type="text/javascript" src="nochange/function.js"></script>
+		<script type="text/javascript" src="/nochange/basicrender.js"></script>
+		<script type="text/javascript" src="/nochange/nodehover.js"></script>
+		<script type="text/javascript" src="/nochange/stuffs.js"></script>
+		<script type="text/javascript" src="/nochange/force.js"></script>
+		<script type="text/javascript" src="/nochange/focus.js"></script>
+		<script type="text/javascript" src="/nochange/nodeclick.js"></script>
+		<script type="text/javascript" src="/nochange/common.js"></script>
+		<script type="text/javascript" src="/nochange/function.js"></script>
 		<script src="/javascripts/jquery.js"></script>
 		<script src="/javascripts/jquery-ui.js"></script>
-		<script type="text/javascript" src="nochange/search.js"></script>
-		<script type="text/javascript" src="nochange/reset.js"></script>
+		<script type="text/javascript" src="/nochange/search.js"></script>
+		<script type="text/javascript" src="/nochange/reset.js"></script>
 		
 		<script type="text/javascript" src="/javascripts/script.js"></script>
 

@@ -91,7 +91,7 @@ $("#common").click(function(){
 			newDivision[newDivisionIndex] = document.createElement('a');
 			newDivision[newDivisionIndex].textContent = commonNodes[i];
 			newDivision[newDivisionIndex].setAttribute('class','coin');
-			newDivision[newDivisionIndex].setAttribute('href', fileNames.join('-')+'/commonnodes');
+			newDivision[newDivisionIndex].setAttribute('href', '/'+fileNames.join('-')+'/commonnodes');
 			newDivision[newDivisionIndex].setAttribute('target','_blank');
 			selectioninfo.appendChild(newDivision[newDivisionIndex]);
 			newDivision[newDivisionIndex].append(document.createElement('br'));
