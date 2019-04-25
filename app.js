@@ -20,10 +20,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/facebook',express.static(path.join(__dirname, 'public')));
+// app.use('/static', express.static('public'))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
 app.use('/:files/commonnodes', function(req, res){
   res.render('./common',{
     filesLength: req.params.files.split('-').length,
@@ -46,6 +48,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-console.log('ROutes initialized');
+console.log('Routes initialized');
 
 module.exports = app ;
