@@ -30,6 +30,7 @@ router.post('/', function(req, res, next){
   var form = new formidable.IncomingForm();
   form.parse(req, function(err, fields, files){
     let fileLength = Object.keys(files).length;
+    let fileNames = [];
     let projectName = fields.project;
     // csv file as well as a callback function
     for(var fileIndex = 0; fileIndex < fileLength; fileIndex++){
