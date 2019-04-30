@@ -33,6 +33,7 @@ router.post('/', function(req, res, next){
     let fileNames = [];
     let projectName = fields.project;
     // csv file as well as a callback function
+    fileNames=[]
     for(var fileIndex = 0; fileIndex < fileLength; fileIndex++){
       fileIndex = fileIndex.toString();
       let fileName = path.parse(files['csvfile'+fileIndex].name).name; 
@@ -61,9 +62,12 @@ router.post('/', function(req, res, next){
 })
 
 // Visualize facebook data
-router.get('/facebook', function(req, res, next) {
+router.get('/facebook/:list', function(req, res, next) {
   var data = [];
   var tempData;
+  var l=req.params.list;
+  var list=l.split(',');
+
   database.connectToServer(function () {
     var db = database.getDb();
     /* 
@@ -78,13 +82,14 @@ router.get('/facebook', function(req, res, next) {
         if there is a friened list of 1000 friends than it create 1000 objects with a user mapped to each friend. 
       */
       result.forEach((friend)=>{
+        if (list.indexOf(friend.fb_id) >= 0) {
         friend.Friend_List.forEach( (list) => {
           tempData = {
-            username: friend.username+'-'+friend.fb_id,
+            username: friend.Full_Name+'-'+friend.fb_id,
             friends : list.username+'-'+list.fb_id
           }
           fetchData.push(tempData);
-        });
+        });}
       });  
       // Writing fetched data in a facebookData.js file
       fs.writeFileSync('./public/data/facebookData.js', '', function(){console.log('done')})
