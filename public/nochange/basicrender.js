@@ -51,8 +51,13 @@ function getRandomColor() {
 	for (var i = 0; i < 6; i++) {
 	  color += characters[getRandomNumber(0, 15)];
 	}
-	
-	return color;
+	if(colorAssigned.indexOf(color) !== -1){
+		console.log('times color');	
+		getRandomColor();
+	}else{
+		colorAssigned.push(color);
+		return color;
+	}
 }
 
 
@@ -76,6 +81,7 @@ let degreeNodes       = [],
 	colorNodes 	      = {},
 	assignedNodes     = [],
 	nodeWithMaxDegree = [],
+	colorAssigned     = [],
 	keys,
 	length;
 
@@ -89,9 +95,10 @@ nodes.forEach(function (node) {
 		color = getRandomColor();
 		colorNodes[node.id] = color;
 		assignedNodes.push(node.id);
-	}
-	setNodeColour(keys, length, color);
+		setNodeColour(keys, length, color);
 
+	}
+	
 	if(degreeNodes[node.id] > maxvalue){
 		maxvalue = degreeNodes[node.id];
 	}
@@ -127,7 +134,7 @@ s.settings(settings_config);
 s.startForceAtlas2(forceconfig);
 s.refresh();
 
-console.log(degreeNodes);
+console.log(degreeNodes, colorAssigned);
 console.log(nodes);
 console.log(nodeSize);
 
