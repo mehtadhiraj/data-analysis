@@ -20,8 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use('/facebook',express.static(path.join(__dirname, 'public')));
-// app.use('/static', express.static('public'))
+// app.use('/facebook',express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
