@@ -61,10 +61,11 @@ router.post('/', function(req, res, next){
 })
 
 // Visualize facebook data
-router.get('/facebook/:list', function(req, res, next) {
+router.get('/facebook/:lists', function(req, res, next) {
+  //list contains the arguments of fb_id whose details have to visualized
   var data = [];
   var tempData;
-  var l=req.params.list;
+  var l=req.params.lists;
   var list=l.split(',');
 
   database.connectToServer(function () {
@@ -80,8 +81,9 @@ router.get('/facebook/:list', function(req, res, next) {
         json object such that each json contains one friend name init accordingly 
         if there is a friened list of 1000 friends than it create 1000 objects with a user mapped to each friend. 
       */
+      //data is fetched from frnd collections
       result.forEach((friend)=>{
-        if (list.indexOf(friend.fb_id) >= 0) {
+        if (list.indexOf(friend.fb_id) >= 0) { //filtering and taking only those provided in the list 
         friend.Friend_List.forEach( (list) => {
           tempData = {
             username: friend.Full_Name+'-'+friend.fb_id,
