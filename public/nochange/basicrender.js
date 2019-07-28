@@ -65,7 +65,11 @@ function getRandomColor() {
 function setNodeColour(neighbors, length, color){
 	for(var i=0; i<length; i++){	
 		if(assignedNodes.indexOf(neighbors[i]) == -1){
-			colorNodes[neighbors[i]] = color;
+			if (Object.keys(s1.graph.neighbors(neighbors[i])).length > 1) {
+				colorNodes[neighbors[i]] = '#e22054';	
+			} else {
+				colorNodes[neighbors[i]] = color;
+			}
 			assignedNodes.push(neighbors[i]);
 		}
 	}
@@ -77,11 +81,11 @@ let degreeNodes       = [],
 	nodeSize          = [],
 	i                 = 0,
 	maxvalue          = 0,
-	color             = "#000",
+	color             = "#e22054",
 	colorNodes 	      = {},
 	assignedNodes     = [],
 	nodeWithMaxDegree = [],
-	colorAssigned     = [],
+	colorAssigned     = ["#e22054"],
 	keys,
 	length;
 
@@ -93,7 +97,11 @@ nodes.forEach(function (node) {
 	i++;
 	if(assignedNodes.indexOf(node.id) == -1){
 		color = getRandomColor();
-		colorNodes[node.id] = color;
+		if(length > 1){
+			colorNodes[node.id] = '#e22054';	
+		}else{
+			colorNodes[node.id] = color;
+		}
 		assignedNodes.push(node.id);
 		setNodeColour(keys, length, color);
 

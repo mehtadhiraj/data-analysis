@@ -67,13 +67,13 @@ router.post('/', function(req, res, next){
       and 
   COMMENT THE LINE 71
 ==============================================================================*/
-// router.get('/facebook/:lists', function(req, res, next) {
-router.get('/facebook', function(req, res, next) {
+router.get('/facebook/:lists', function(req, res, next) {
+// router.get('/facebook', function(req, res, next) {
   //list contains the arguments of fb_id whose details have to visualized
   var data = [];
   var tempData;
   var l=req.params.lists;
-  // var list=l.split(',');
+  var list=l.split(',');
 
   database.connectToServer(function () {
     var db = database.getDb();
@@ -90,7 +90,7 @@ router.get('/facebook', function(req, res, next) {
       */
       //data is fetched from frnd collections
       result.forEach((friend)=>{
-        // if (list.indexOf(friend.fb_id) >= 0) { //filtering and taking only those provided in the list 
+        if (list.indexOf(friend.fb_id) >= 0) { //filtering and taking only those provided in the list 
           friend.Friend_List.forEach( (list) => {
             tempData = {
               username: friend.username+'-'+friend.fb_id,
@@ -98,7 +98,7 @@ router.get('/facebook', function(req, res, next) {
             }
             fetchData.push(tempData);
           });
-        // }
+        }
       });  
       // Writing fetched data in a facebookData.js file
       fs.writeFileSync('./public/data/facebookData.js', '', function(){console.log('done')})
