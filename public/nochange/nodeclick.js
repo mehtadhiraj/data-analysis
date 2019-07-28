@@ -34,6 +34,7 @@ s.bind('rightClickNode',
 			var newContent = e.data.node.label;
 			newDiv[selectioncount] = document.createElement('div');
 			newDiv[selectioncount].textContent = newContent;
+			$("#ac-3").prop('checked', true);
 			//newDiv[selectioncount].setAttribute('class','coin');
 			selectioninfo.appendChild(newDiv[selectioncount]);
 			// }			
